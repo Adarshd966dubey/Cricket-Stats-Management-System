@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hibernate-configuration>
+    <session-factory>
+        <!-- Database Connection -->
+        <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3305/cricketer_db</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">New@1234</property>
+        
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
+        
+        <property name="hibernate.format_sql">true</property>
+        <property name="hibernate.use_sql_comments">true</property>
+        
+        
+        
+         <!-- Entity Classes -->
+        <mapping class="com.cricket.Entity.Player"/>
+        <mapping class="com.cricket.Entity.Batter"/>
+        <mapping class="com.cricket.Entity.Bowler"/>
+        <mapping class="com.cricket.Entity.Umpire"/>
+        <mapping class="com.cricket.Entity.Venue"/>
+    </session-factory>
+</hibernate-configuration>
