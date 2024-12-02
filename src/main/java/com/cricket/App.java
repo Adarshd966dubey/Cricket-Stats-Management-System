@@ -2,23 +2,20 @@ package com.cricket;
 
 import com.cricket.dao.*;
 import com.cricket.Entity.*;
-
 import java.util.*;
 
 public class App {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int mainChoice;
-
-        do {
+           do {
             // Main Menu
             System.out.println("\n------ Cricket Stats Menu -----");
             System.out.println("1. Manage Players");
             System.out.println("2. Manage Batters");
             System.out.println("3. Manage Bowlers");
             System.out.println("4. Manage Umpires");
-            System.out.println("5. Manage Venues");
-            System.out.println("6. Exit");
+            System.out.println("5. Exit");
             System.out.print("Enter your choice: ");
             mainChoice = scanner.nextInt();
 
@@ -31,14 +28,12 @@ public class App {
                     break;
                 case 4: manageUmpires(scanner);
                     break;
-                case 5: manageVenues(scanner);
-                    break;
-                case 6: System.out.println("Exiting the application. Goodbye!");
+                case 5: System.out.println("Exiting the application. Goodbye!");
                     break;
                 default:
                     System.out.println("Invalid choice. Please try again.");
             }
-        } while (mainChoice != 6);
+        } while (mainChoice != 5);
 
         scanner.close();
     }
@@ -60,7 +55,7 @@ public class App {
 
             switch (choice) {
                 case 1: // Add Player
-                    scanner.nextLine(); // Consume newline
+                    scanner.nextLine(); 
                     Player player = new Player();
                     System.out.print("Enter Player Name: ");
                     player.setName(scanner.nextLine());
@@ -74,7 +69,7 @@ public class App {
                     break;
 
                 case 2: // View All Players
-                    System.out.println("=== All Players ===");
+                    System.out.println("------- All Players -------");
                     List<Player> players = playerDAO.findAll(Player.class);
                     if (players.isEmpty()) {
                         System.out.println("No players found.");
@@ -88,7 +83,7 @@ public class App {
                 case 3: // Update Player
                     System.out.print("Enter Player ID to update: ");
                     int updateId = scanner.nextInt();
-                    scanner.nextLine(); // Consume newline
+                    scanner.nextLine(); 
                     Player playerToUpdate = playerDAO.findById(Player.class, updateId);
                     if (playerToUpdate != null) {
                         System.out.print("Enter New Name: ");
@@ -108,11 +103,11 @@ public class App {
                 case 4: // Delete Player
                 	System.out.print("Enter Player ID to delete: ");
                     int id = scanner.nextInt();
-                    playerDAO.delete(id);  // Call the delete method
+                    playerDAO.delete(id);  
                     break;
 
                 case 5:
-                    return; // Back to main menu
+                    return; 
 
                 default:
                     System.out.println("Invalid choice. Please try again.");
@@ -191,11 +186,11 @@ public class App {
                 case 4: // Delete Batter
                 	 System.out.print("Enter Batter ID to delete: ");
                      int id = scanner.nextInt();
-                     batterDAO.delete(id);  // Call the delete(int id) method
+                     batterDAO.delete(id); 
                      break;
 
                 case 5:
-                    return; // Back to main menu
+                    return;
 
                 default:
                     System.out.println("Invalid choice. Please try again.");
@@ -203,7 +198,7 @@ public class App {
         } while (choice != 5);
     }
 
-
+    // manage Bowlers 
     private static void manageBowlers(Scanner scanner) {
         BowlerDAO bowlerDAO = new BowlerDAO();
         int choice;
@@ -219,8 +214,8 @@ public class App {
             choice = scanner.nextInt();
 
             switch (choice) {
-                case 1:
-                    scanner.nextLine(); // Consume newline
+                case 1: // Add Bowler
+                    scanner.nextLine(); 
                     Bowler bowler = new Bowler();
                     System.out.print("Enter Player ID: ");
                     int playerId = scanner.nextInt();
@@ -236,7 +231,7 @@ public class App {
                     System.out.println("Bowler saved successfully!");
                     break;
 
-                case 2:
+                case 2: // View All Bowlers
                     System.out.println("--------- All Bowlers ---------");
                     List<Bowler> bowlers = bowlerDAO.findAll(Bowler.class);
                     if (bowlers.isEmpty()) {
@@ -248,7 +243,7 @@ public class App {
                     }
                     break;
 
-                case 3:
+                case 3: // Update Bowler
                     System.out.print("Enter Bowler ID to update: ");
                     int bowlerIdToUpdate = scanner.nextInt();
                     Bowler bowlerToUpdate = bowlerDAO.findById(Bowler.class, bowlerIdToUpdate);
@@ -266,7 +261,7 @@ public class App {
                     }
                     break;
 
-                case 4:
+                case 4: // delete Bowler
                     System.out.print("Enter Bowler ID to delete: ");
                     int bowlerIdToDelete = scanner.nextInt();
                     bowlerDAO.delete(Bowler.class, bowlerIdToDelete);
@@ -274,7 +269,7 @@ public class App {
                     break;
 
                 case 5:
-                    return; // Back to main menu
+                    return;
 
                 default:
                     System.out.println("Invalid choice. Please try again.");
@@ -282,7 +277,7 @@ public class App {
         } while (choice != 5);
     }
 
-    // Similar structure for Umpires
+    // Manage Umpires
     private static void manageUmpires(Scanner scanner) {
         UmpireDAO umpireDAO = new UmpireDAO();
         int choice;
@@ -353,107 +348,7 @@ public class App {
                     break;
 
                 case 5:
-                    return; // Back to main menu
-
-                default:
-                    System.out.println("Invalid choice. Please try again.");
-            }
-        } while (choice != 5);
-    }
-
-    // Similar structure for Venues
-    private static void manageVenues(Scanner scanner) {
-        VenueDAO venueDAO = new VenueDAO();
-        int choice;
-
-        do {
-            System.out.println("\n--------- Manage Venues ---------");
-            System.out.println("1. Add Venue");
-            System.out.println("2. View All Venues");
-            System.out.println("3. Update Venue");
-            System.out.println("4. Delete Venue");
-            System.out.println("5. Back to Main Menu");
-            System.out.print("Enter your choice: ");
-            choice = scanner.nextInt();
-
-            switch (choice) {
-                
-                case 1: // Add Venue
-                    scanner.nextLine(); // Consume newline
-                    Venue venue = new Venue();
-
-                    System.out.print("Enter Venue Name: ");
-                    String name = scanner.nextLine();
-                    if (name.isEmpty()) {
-                        System.out.println("Venue name cannot be empty.");
-                        break;
-                    }
-                    venue.setName(name);
-
-                    System.out.print("Enter Venue City: ");
-                    String city = scanner.nextLine();
-                    if (city.isEmpty()) {
-                        System.out.println("Venue city cannot be empty.");
-                        break;
-                    }
-                    venue.setLocation(city); // Assuming 'city' is stored in 'location'
-
-                    System.out.print("Enter Venue Capacity: ");
-                    if (!scanner.hasNextInt()) {
-                        System.out.println("Invalid input for capacity. Must be a number.");
-                        scanner.nextLine(); // Consume invalid input
-                        break;
-                    }
-                    venue.setCapacity(scanner.nextInt());
-
-                    venueDAO.save(venue);
-                    System.out.println("Venue saved successfully!");
-                    break;
-                case 2:
-                    System.out.println("--------- All Venues ---------");
-                    List<Venue> venues = venueDAO.findAll(Venue.class);
-                    if (venues.isEmpty()) {
-                        System.out.println("No venues found.");
-                    } else {
-                        for (Venue v : venues) {
-                            System.out.println("Venue ID: " + v.getId() +
-                                    ", Name: " + v.getName() +
-                                    ", Location: " + v.getLocation() +
-                                    ", Capacity: " + v.getCapacity());
-                        }
-                    }
-                    break;
-
-                case 3:
-                    System.out.print("Enter Venue ID to update: ");
-                    int venueIdToUpdate = scanner.nextInt();
-                    Venue venueToUpdate = venueDAO.findById(Venue.class, venueIdToUpdate);
-
-                    if (venueToUpdate != null) {
-                        scanner.nextLine();
-                        System.out.print("Enter new Venue Name: ");
-                        venueToUpdate.setName(scanner.nextLine());
-                        System.out.print("Enter new Location: ");
-                        venueToUpdate.setLocation(scanner.nextLine());
-                        System.out.print("Enter new Capacity: ");
-                        venueToUpdate.setCapacity(scanner.nextInt());
-
-                        venueDAO.update(venueToUpdate);
-                        System.out.println("Venue updated successfully!");
-                    } else {
-                        System.out.println("Venue not found.");
-                    }
-                    break;
-
-                case 4:
-                    System.out.print("Enter Venue ID to delete: ");
-                    int venueIdToDelete = scanner.nextInt();
-                    venueDAO.delete(Venue.class, venueIdToDelete);
-                    System.out.println("Venue deleted successfully!");
-                    break;
-
-                case 5:
-                    return; // Back to main menu
+                    return; 
 
                 default:
                     System.out.println("Invalid choice. Please try again.");
