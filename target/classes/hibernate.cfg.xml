@@ -21,6 +21,5 @@
         <mapping class="com.cricket.Entity.Batter"/>
         <mapping class="com.cricket.Entity.Bowler"/>
         <mapping class="com.cricket.Entity.Umpire"/>
-        <mapping class="com.cricket.Entity.Venue"/>
     </session-factory>
 </hibernate-configuration>

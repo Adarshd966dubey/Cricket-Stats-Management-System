@@ -55,16 +55,16 @@ public class BatterDAO {
         try (Session session = HibernateUtils.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
             
-            Batter batter = session.get(Batter.class, id);  // Fetch the entity using its ID
+            Batter batter = session.get(Batter.class, id);  
             if (batter != null) {
-                session.delete(batter);  // Delete the entity
-                transaction.commit();    // Commit the transaction
+                session.delete(batter);  
+                transaction.commit();    
             } else {
                 System.out.println("Batter with ID " + id + " not found.");
             }
         } catch (Exception e) {
             if (transaction != null) {
-                transaction.rollback();  // Rollback in case of failure
+                transaction.rollback();
             }
             e.printStackTrace();
         }
